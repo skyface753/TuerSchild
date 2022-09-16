@@ -1,4 +1,4 @@
 {
-  "BackendUrl": "http://localhost:5000/api",
+  "BackendUrl": "http://localhost:5001/api",
   "GATrackingID": ""
 }

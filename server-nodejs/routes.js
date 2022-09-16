@@ -8,12 +8,15 @@ const Middleware = require('./middleware');
 const RoutesTestService = require('./services/routes-test.js'); // Test Routes Authenticated
 const UserService = require('./services/user_service.js');
 const AvatarService = require('./services/files/avatar_service.js');
+const BelegungService = require('./services/belegung_service.js');
 const { uploadAvatar } = require('./helpers/multer');
 const db = require('./services/db.js');
 
 router.post('/logout', UserService.logout);
 router.post('/login', UserService.login);
 router.put('/register', UserService.register);
+
+router.get('/belegung', BelegungService.getAll);
 
 // Docs
 const swaggerDocsObj = require('./swagger');

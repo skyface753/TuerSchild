@@ -85,20 +85,10 @@ async function initDb() {
   commands.push(
     "INSERT INTO `user` (`id`, `email`, `password`, `roleFk`) VALUES (2, 'test@example.de', '$2b$10$RZLpZn3IdVHfxn40HZdd8uZTjeRCgxkG2ZGTdzhqsTG6t/dK/BR7.', 1)"
   );
-  var promises = [];
   for (let i = 0; i < commands.length; i++) {
-    promises.push(
-      new Promise((resolve) => {
-        query(commands[i], []).then((result) => {
-          if (process.env.SQLDEBUG == 'true') {
-            console.log('SQL Result: ' + JSON.stringify(result));
-          }
-          resolve(result);
-        });
-      })
-    );
+    var result = await query(commands[i], []);
+    if (process.env.SQLDEBUG == 'true') {
+      console.log('Command Result: ' + JSON.stringify(result));
+    }
   }
-  Promise.all(promises).then(() => {
-    console.log('SQL Tables created');
-  });
 }
